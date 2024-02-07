@@ -18,7 +18,7 @@ Resources:
       StorageType: gp2
       PubliclyAccessible: True
       AllocatedStorage: 20
-      DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]] 
+      DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]]
       Tags: 
       - Key: "owner"
         Value: "anza@bbd.co.za"
