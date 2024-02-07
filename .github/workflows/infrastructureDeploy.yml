@@ -12,6 +12,10 @@ on:
       - 'src/infrastructure/cloudformation/rds_deploy.yml'
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   InfrastructureDeploy:
     runs-on: ubuntu-latest
