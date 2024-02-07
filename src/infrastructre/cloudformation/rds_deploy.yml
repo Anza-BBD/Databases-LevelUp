@@ -19,8 +19,3 @@ Resources:
       PubliclyAccessible: True
       AllocatedStorage: 20
       DBInstanceIdentifier: !Join ["-in-", ["MySqlDbInstance", !Ref "AWS::Region"]] 
-      Tags: 
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
