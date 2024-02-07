@@ -1,10 +1,7 @@
-# This is a basic workflow to help you get started with Actions
 
 name: Deploy CloudFormation Stack
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
     paths:
@@ -13,25 +10,13 @@ on:
     branches: [ "main" ]
     paths:
       - 'src/infrastructure/cloudformation/rds_deploy.yml'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  AWS_REGION : "eu-west-1"
-  ROlE_ARN: "arn:aws:iam::958933916692:role/GitHubAction-AssumeRole"
-  ROLE_SESSION_NAME: "GitHub_to_AWS_via_OIDC"
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   InfrastructureDeploy:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v3
 
