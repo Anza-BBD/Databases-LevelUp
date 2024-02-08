@@ -72,6 +72,19 @@ Resources:
         Value: "anza@bbd.co.za"
       - Key: "created-using"
         Value: "cloudformation"
+  
+  DBInstanceSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref DBInstanceVPC
+      CidrBlock: "10.0.2.0/24"
+      AvailabilityZone: "eu-west-1b"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
+
 
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
@@ -80,6 +93,7 @@ Resources:
       DBSubnetGroupDescription: "Subnet group for RDS instance"
       SubnetIds:
         - !Ref DBInstanceSubnet
+        - !Ref DBInstanceSubnet2
 
 
   SubnetRouteTableAssociation:
