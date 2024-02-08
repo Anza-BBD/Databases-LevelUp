@@ -6,10 +6,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'src/infrastructure/cloudformation/rds_deploy.yml'
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - 'src/infrastructure/cloudformation/rds_deploy.yml'
+
   workflow_dispatch:
 
 permissions:
