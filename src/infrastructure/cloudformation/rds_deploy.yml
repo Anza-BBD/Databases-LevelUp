@@ -74,12 +74,12 @@ Resources:
         Value: "cloudformation"
 
   DBSubnetGroup:
-  Type: AWS::RDS::DBSubnetGroup
-  Properties:
-    DBSubnetGroupName: "DBInstanceSubnetGroup"
-    DBSubnetGroupDescription: "Subnet group for RDS instance"
-    SubnetIds:
-      - !Ref DBInstanceSubnet
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupName: "DBInstanceSubnetGroup"
+      DBSubnetGroupDescription: "Subnet group for RDS instance"
+      SubnetIds:
+        - !Ref DBInstanceSubnet
 
 
   SubnetRouteTableAssociation:
