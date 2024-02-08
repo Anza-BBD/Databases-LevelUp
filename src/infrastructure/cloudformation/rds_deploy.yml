@@ -29,39 +29,6 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
 
-  VPCInternetGateway:
-    Type: AWS::EC2::InternetGateway
-    Properties:
-      Tags:
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
-
-  AttachGateway:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: !Ref DBInstanceVPC
-      InternetGatewayId: !Ref VPCInternetGateway
-
-  PublicRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref DBInstanceVPC
-      Tags:
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
-
-  PublicRoute:
-    Type: AWS::EC2::Route
-    DependsOn: AttachGateway
-    Properties:
-      RouteTableId: !Ref PublicRouteTable
-      DestinationCidrBlock: "0.0.0.0/0"
-      GatewayId: !Ref VPCInternetGateway
-
   DBInstanceSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -73,18 +40,17 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
   
-  DBInstanceSubnet2:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref DBInstanceVPC
-      CidrBlock: "10.0.2.0/24"
-      AvailabilityZone: "eu-west-1b"
-      Tags:
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
-
+  # DBInstanceSubnet2:
+  #   Type: AWS::EC2::Subnet
+  #   Properties:
+  #     VpcId: !Ref DBInstanceVPC
+  #     CidrBlock: "10.0.2.0/24"
+  #     AvailabilityZone: "eu-west-1b"
+  #     Tags:
+  #     - Key: "owner"
+  #       Value: "anza@bbd.co.za"
+  #     - Key: "created-using"
+  #       Value: "cloudformation"
 
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
@@ -93,14 +59,7 @@ Resources:
       DBSubnetGroupDescription: "Subnet group for RDS instance"
       SubnetIds:
         - !Ref DBInstanceSubnet
-        - !Ref DBInstanceSubnet2
-
-
-  SubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref DBInstanceSubnet
-      RouteTableId: !Ref PublicRouteTable
+        # - !Ref DBInstanceSubnet2
 
   DBInstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
