@@ -19,11 +19,11 @@ Resources:
       EnableDnsSupport: true
       EnableDnsHostnames: true
       InstanceTenancy: "default"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
   DBInstanceSubnet:
     Type: AWS::EC2::Subnet
@@ -31,11 +31,11 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       CidrBlock: "10.0.1.0/24"
       AvailabilityZone: "eu-west-1a"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
   
   #The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: eu-west-1c. Add subnets to cover at least 2 AZs.
   DBInstanceSubnet2:
@@ -45,20 +45,20 @@ Resources:
       CidrBlock: "10.0.2.0/24"
       AvailabilityZone: "eu-west-1b"
       Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
   
   # Cannot create a publicly accessible DBInstance if the specified VPC has no internet gateway attached.
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -108,11 +108,11 @@ Resources:
           FromPort: "3306"
           ToPort: "3306"
           CidrIp: "0.0.0.0/0"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
   # Db server definition
   MySqlDBInstance:
@@ -131,9 +131,9 @@ Resources:
       AllocatedStorage: 20
       DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]]
       MultiAZ: False
-      # Tags: 
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags: 
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
     
