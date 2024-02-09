@@ -33,4 +33,5 @@ jobs:
         with:
           name: ${{ vars.CLOUDFORMATION_STACKNAME }}
           template: src/infrastructure/cloudformation/rds_deploy.yml
+          tags: '[{"Key": "owner", "Value": "anza@bbd.co.za"}, {"Key": "created-using", "Value": "Github Action"}]'
           parameter-overrides: "DBNameParam=${{ vars.DB_Name }},MUserPasswordParam=${{ secrets.DB_PASSWORD }},MUserParam=${{ vars.DB_USER }}"

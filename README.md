@@ -25,7 +25,7 @@ The **Online Pharmacy Database System** project aims to develop the database sys
 - Database Management System: MySQL
 - Database Change Management Tool: Flyway
 - Cloud Platform: Amazon Web Services (AWS)
-- Infrastructure as Code: Terraform
+- Infrastructure as Code: CloudFormation
 - Version Control: Git, GitHub
 
 ## Setup Instructions

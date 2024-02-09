@@ -10,9 +10,12 @@ Parameters:
   DBNameParam: 
     Type: String
   MUserParam:
+    Default: admin
     Type: String
   MUserPasswordParam:
     Type: String
+    NoEcho: true
+    MinLength: 8
     Description: "It must be longer than 8 characters"
 
 Resources:
@@ -29,50 +32,19 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
 
-  VPCInternetGateway:
-    Type: AWS::EC2::InternetGateway
-    Properties:
-      Tags:
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
-
-  AttachGateway:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: !Ref DBInstanceVPC
-      InternetGatewayId: !Ref VPCInternetGateway
-
-  PublicRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref DBInstanceVPC
-      Tags:
-      - Key: "owner"
-        Value: "anza@bbd.co.za"
-      - Key: "created-using"
-        Value: "cloudformation"
-
-  PublicRoute:
-    Type: AWS::EC2::Route
-    DependsOn: AttachGateway
-    Properties:
-      RouteTableId: !Ref PublicRouteTable
-      DestinationCidrBlock: "0.0.0.0/0"
-      GatewayId: !Ref VPCInternetGateway
-
   DBInstanceSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref DBInstanceVPC
       CidrBlock: "10.0.1.0/24"
+      AvailabilityZone: "eu-west-1a"
       Tags:
       - Key: "owner"
         Value: "anza@bbd.co.za"
       - Key: "created-using"
         Value: "cloudformation"
   
+  #The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: eu-west-1c. Add subnets to cover at least 2 AZs.
   DBInstanceSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -84,8 +56,45 @@ Resources:
         Value: "anza@bbd.co.za"
       - Key: "created-using"
         Value: "cloudformation"
+  
+  # Cannot create a publicly accessible DBInstance if the specified VPC has no internet gateway attached.
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref DBInstanceVPC
+      InternetGatewayId: !Ref InternetGateway
 
+  # A public subnet is a subnet that has a route to an internet gateway otherwise it'll be private and DBInstance will not be accessible from the internet
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref DBInstanceVPC
+
+  PublicSubnetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: "0.0.0.0/0"
+      GatewayId: !Ref InternetGateway
+
+  PublicSubnetAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref DBInstanceSubnet
+      RouteTableId: !Ref PublicRouteTable
+
+  # Define a collection of subnets for use in an Amazon RDS, need a minimum of 2 to meet Availability Zone (AZ) coverage requirement
+  # may not be required if default VPC and subnets exist in the account
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -95,13 +104,7 @@ Resources:
         - !Ref DBInstanceSubnet
         - !Ref DBInstanceSubnet2
 
-
-  SubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref DBInstanceSubnet
-      RouteTableId: !Ref PublicRouteTable
-
+  # control access to the server
   DBInstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -118,6 +121,7 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
 
+  # Db server definition
   MySqlDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -126,12 +130,11 @@ Resources:
       MasterUserPassword: !Ref MUserPasswordParam
       Engine: MySQL
       DBInstanceClass: db.t2.micro
-      # DBSecurityGroups: !Ref DBInstanceSecurityGroup
       VPCSecurityGroups: 
         - !GetAtt DBInstanceSecurityGroup.GroupId
       DBSubnetGroupName: !Ref DBSubnetGroup
       StorageType: gp2
-      PubliclyAccessible: True
+      PubliclyAccessible: true
       AllocatedStorage: 20
       DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]]
       MultiAZ: False
