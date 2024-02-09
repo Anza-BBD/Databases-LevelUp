@@ -37,7 +37,6 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
   
-  #The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: eu-west-1c. Add subnets to cover at least 2 AZs.
   DBInstanceSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -50,7 +49,6 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
   
-  # Cannot create a publicly accessible DBInstance if the specified VPC has no internet gateway attached.
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -66,8 +64,7 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       InternetGatewayId: !Ref InternetGateway
 
-  # A public subnet is a subnet that has a route to an internet gateway otherwise it'll be private and DBInstance will not be accessible from the internet
-  PublicRouteTable:
+ PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref DBInstanceVPC
@@ -86,8 +83,6 @@ Resources:
       SubnetId: !Ref DBInstanceSubnet
       RouteTableId: !Ref PublicRouteTable
 
-  # Define a collection of subnets for use in an Amazon RDS, need a minimum of 2 to meet Availability Zone (AZ) coverage requirement
-  # may not be required if default VPC and subnets exist in the account
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -97,7 +92,6 @@ Resources:
         - !Ref DBInstanceSubnet
         - !Ref DBInstanceSubnet2
 
-  # control access to the server
   DBInstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -114,7 +108,6 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
 
-  # Db server definition
   MySqlDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
