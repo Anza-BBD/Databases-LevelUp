@@ -19,11 +19,11 @@ Resources:
       EnableDnsSupport: true
       EnableDnsHostnames: true
       InstanceTenancy: "default"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
   DBInstanceSubnet:
     Type: AWS::EC2::Subnet
@@ -31,13 +31,12 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       CidrBlock: "10.0.1.0/24"
       AvailabilityZone: "eu-west-1a"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
   
-  #The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: eu-west-1c. Add subnets to cover at least 2 AZs.
   DBInstanceSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -45,20 +44,19 @@ Resources:
       CidrBlock: "10.0.2.0/24"
       AvailabilityZone: "eu-west-1b"
       Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
   
-  # Cannot create a publicly accessible DBInstance if the specified VPC has no internet gateway attached.
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -66,7 +64,6 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       InternetGatewayId: !Ref InternetGateway
 
-  # A public subnet is a subnet that has a route to an internet gateway otherwise it'll be private and DBInstance will not be accessible from the internet
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -86,8 +83,6 @@ Resources:
       SubnetId: !Ref DBInstanceSubnet
       RouteTableId: !Ref PublicRouteTable
 
-  # Define a collection of subnets for use in an Amazon RDS, need a minimum of 2 to meet Availability Zone (AZ) coverage requirement
-  # may not be required if default VPC and subnets exist in the account
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -97,7 +92,6 @@ Resources:
         - !Ref DBInstanceSubnet
         - !Ref DBInstanceSubnet2
 
-  # control access to the server
   DBInstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -108,13 +102,12 @@ Resources:
           FromPort: "3306"
           ToPort: "3306"
           CidrIp: "0.0.0.0/0"
-      # Tags:
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags:
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
 
-  # Db server definition
   MySqlDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -131,9 +124,9 @@ Resources:
       AllocatedStorage: 20
       DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]]
       MultiAZ: False
-      # Tags: 
-      # - Key: "owner"
-      #   Value: "anza@bbd.co.za"
-      # - Key: "created-using"
-      #   Value: "cloudformation"
+      Tags: 
+      - Key: "owner"
+        Value: "anza@bbd.co.za"
+      - Key: "created-using"
+        Value: "cloudformation"
     

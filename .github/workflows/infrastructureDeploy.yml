@@ -28,10 +28,10 @@ jobs:
           role-session-name: ${{ vars.ROLE_SESSION_NAME }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Update or Create CloudFormation stack
+      - name: Create or Update CloudFormation stack
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: ${{ vars.CLOUDFORMATION_STACKNAME }}
           template: src/infrastructure/cloudformation/rds_deploy.yml
-          tags: '[{"Key": "owner", "Value": "anza@bbd.co.za"}, {"Key": "created-using", "Value": "Cloudformation"}]'
+          tags: '[{"Key": "owner", "Value": "${{ vars.OWNER }}"}, {"Key": "created-using", "Value": "${{ vars.CREATED_USING }}"}]'
           parameter-overrides: "DBNameParam=${{ vars.DB_Name }},MUserPasswordParam=${{ secrets.DB_PASSWORD }},MUserParam=${{ vars.DB_USER }}"
