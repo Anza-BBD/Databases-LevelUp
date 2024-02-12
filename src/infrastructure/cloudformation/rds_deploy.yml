@@ -64,7 +64,7 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       InternetGatewayId: !Ref InternetGateway
 
- PublicRouteTable:
+  PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref DBInstanceVPC
