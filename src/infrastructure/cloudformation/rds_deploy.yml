@@ -133,7 +133,6 @@ Resources:
       PubliclyAccessible: true
       AllocatedStorage: 20
       BackupRetentionPeriod: 0
-      DeletionPolicy: Delete
       DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-Postgres-Instance", !Ref "AWS::Region"]]
       MultiAZ: False
       Tags: 
