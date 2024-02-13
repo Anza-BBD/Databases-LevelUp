@@ -1,31 +1,35 @@
 
 --@block
-ALTER TABLE
-    `Products` ADD CONSTRAINT `products_supplierid_foreign` FOREIGN KEY(`SupplierID`) REFERENCES `Supplier`(`SupplierID`);
+ALTER TABLE "Prescriptions" ADD FOREIGN KEY ("PrescriptionID") REFERENCES "Doctors" ("DoctorID");
+
+
 --@block
-ALTER TABLE
-    `Prescriptions` ADD CONSTRAINT `prescriptions_customerid_foreign` FOREIGN KEY(`CustomerID`) REFERENCES `Customers`(`CustomerID`);
+ALTER TABLE "Prescriptions" ADD FOREIGN KEY ("PrescriptionID") REFERENCES "Customers" ("CustomerID");
+
+
 --@block
-ALTER TABLE
-    `OrderDetails` ADD CONSTRAINT `orderdetails_orderid_foreign` FOREIGN KEY(`OrderID`) REFERENCES `Orders`(`OrderID`);
+ALTER TABLE "PrescriptionDetails" ADD FOREIGN KEY ("PrescriptionDetailID") REFERENCES "Prescriptions" ("PrescriptionID");
+
+
 --@block
-ALTER TABLE
-    `ShippingInfo` ADD CONSTRAINT `shippinginfo_orderid_foreign` FOREIGN KEY(`OrderID`) REFERENCES `Orders`(`OrderID`);
+ALTER TABLE "OrderDetails" ADD FOREIGN KEY ("OrderDetailID") REFERENCES "Orders" ("OrderID");
+
+
 --@block
-ALTER TABLE
-    `Prescriptions` ADD CONSTRAINT `prescriptions_customerid_foreign` FOREIGN KEY(`CustomerID`) REFERENCES `PrescriptionDetails`(`PrescriptionID`);
+ALTER TABLE "OrderDetails" ADD FOREIGN KEY ("OrderDetailID") REFERENCES "Products" ("ProductID");
+
+
 --@block
-ALTER TABLE
-    `Prescriptions` ADD CONSTRAINT `prescriptions_doctorid_foreign` FOREIGN KEY(`DoctorID`) REFERENCES `Doctors`(`DoctorID`);
+ALTER TABLE "Products" ADD FOREIGN KEY ("ProductID") REFERENCES "Supplier" ("SupplierID");
+
+
 --@block
-ALTER TABLE
-    `OrderDetails` ADD CONSTRAINT `orderdetails_productid_foreign` FOREIGN KEY(`ProductID`) REFERENCES `Products`(`ProductID`);
+ALTER TABLE "Customers" ADD FOREIGN KEY ("CustomerID") REFERENCES "Orders" ("OrderID");
+
+
 --@block
-ALTER TABLE
-    `Orders` ADD CONSTRAINT `orders_customerid_foreign` FOREIGN KEY(`CustomerID`) REFERENCES `Customers`(`CustomerID`);
+ALTER TABLE "PrescriptionDetails" ADD FOREIGN KEY ("PrescriptionDetailID") REFERENCES "Products" ("ProductID");
+
+
 --@block
-ALTER TABLE
-    `Payments` ADD CONSTRAINT `payments_orderid_foreign` FOREIGN KEY(`OrderID`) REFERENCES `Orders`(`OrderID`);
---@block
-ALTER TABLE
-    `PrescriptionDetails` ADD CONSTRAINT `prescriptiondetails_productid_foreign` FOREIGN KEY(`ProductID`) REFERENCES `Products`(`ProductID`);
+ALTER TABLE "Orders" ADD FOREIGN KEY ("OrderID") REFERENCES "Payments" ("PaymentID");

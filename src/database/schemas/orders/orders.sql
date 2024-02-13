@@ -1,11 +1,8 @@
 --@block
-CREATE TABLE `Orders`(
-    `OrderID` BIGINT NOT NULL,
-    `CustomerID` BIGINT NOT NULL,
-    `OrderDate` DATE NOT NULL,
-    `TotalAmount` DECIMAL(8, 2) NOT NULL,
-    `Status` INT NOT NULL
+CREATE TABLE "Orders" (
+  "OrderID" bigint PRIMARY KEY NOT NULL,
+  "CustomerID" bigint NOT NULL,
+  "OrderDate" date NOT NULL,
+  "TotalAmount" decimal(8,2) NOT NULL,
+  "Status" int NOT NULL
 );
---@block
-ALTER TABLE
-    `Orders` ADD PRIMARY KEY(`OrderID`);
