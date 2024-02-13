@@ -1,14 +1,7 @@
 --@block
-CREATE TABLE `Customers`(
-    `CustomerID` BIGINT NOT NULL,
-    `Name` VARCHAR(255) NOT NULL,
-    `Email` VARCHAR(255) NOT NULL,
-    `Address` VARCHAR(255) NOT NULL,
-    `PhoneNumber` VARCHAR(255) NOT NULL
+CREATE TABLE "Customers" (
+  "CustomerID" bigint PRIMARY KEY,
+  "Name" varchar(255),
+  "Email" varchar(255) UNIQUE,
+  "PhoneNumber" varchar(255)
 );
---@block
-ALTER TABLE
-    `Customers` ADD PRIMARY KEY(`CustomerID`);
---@block
-ALTER TABLE
-    `Customers` ADD UNIQUE `customers_email_unique`(`Email`);

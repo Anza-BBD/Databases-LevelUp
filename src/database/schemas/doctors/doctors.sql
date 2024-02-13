@@ -1,5 +1,5 @@
 --@block
-CREATE TABLE `Doctors`(
-    `DoctorID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL
+CREATE TABLE "Doctors" (
+  "DoctorID" bigint PRIMARY KEY NOT NULL,
+  "Name" varchar(255) NOT NULL
 );
