@@ -1,15 +1,23 @@
 
 Parameters:
   DBNameParam: 
+    Default: Pharmacy
     Type: String
+    MinLength: 1
+    AllowedPattern: "^[a-zA-Z][a-zA-Z0-9-]{0,58}[a-zA-Z0-9]$"
+    Description: "The DB instance identifier is case-insensitive, but is stored as all lowercase (e.g pharmacy). 1 to 60 alphanumeric characters or hyphens. First character must be a letter. Can't contain two consecutive hyphens. Can't end with a hyphen."
   MUserParam:
-    Default: admin
+    Default: postgres
     Type: String
+    MinLength: 1
+    AllowedPattern: "^[a-zA-Z][a-zA-Z0-9]{0,15}$"
+    Description: "1 to 16 alphanumeric characters. The first character must be a letter."
   MUserPasswordParam:
     Type: String
     NoEcho: true
     MinLength: 8
-    Description: "It must be longer than 8 characters"
+    AllowedPattern: "[a-zA-Z0-9!#\\$%&()*+,-.:;<=>?\\[\\]^_`{|}~]*"
+    Description: "At least 8 printable ASCII characters. Can't contain any of the following: / (slash), '(single quote), \"(double quote) and @ (at sign)."
 
 Resources:
   DBInstanceVPC:
@@ -99,8 +107,8 @@ Resources:
       VpcId: !Ref DBInstanceVPC
       SecurityGroupIngress:
         - IpProtocol: "tcp"
-          FromPort: "3306"
-          ToPort: "3306"
+          FromPort: "5432"
+          ToPort: "5432"
           CidrIp: "0.0.0.0/0"
       Tags:
       - Key: "owner"
@@ -108,21 +116,25 @@ Resources:
       - Key: "created-using"
         Value: "cloudformation"
 
-  MySqlDBInstance:
+  PostgresDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
       DBName: !Ref DBNameParam
       MasterUsername: !Ref MUserParam
       MasterUserPassword: !Ref MUserPasswordParam
       Engine: postgres
-      DBInstanceClass: db.t2.micro
+      LicenseModel: postgresql-license
+      EngineVersion: 16.1
+      DBInstanceClass: db.t3.micro
       VPCSecurityGroups: 
         - !GetAtt DBInstanceSecurityGroup.GroupId
       DBSubnetGroupName: !Ref DBSubnetGroup
       StorageType: gp2
       PubliclyAccessible: true
       AllocatedStorage: 20
-      DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-MySql-Instance", !Ref "AWS::Region"]]
+      BackupRetentionPeriod: 0
+      DeletionPolicy: Delete
+      DBInstanceIdentifier: !Join ["-in-", ["DatabaseLevelUp-Postgres-Instance", !Ref "AWS::Region"]]
       MultiAZ: False
       Tags: 
       - Key: "owner"
