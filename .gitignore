@@ -1,1 +1,23 @@
-node_modules/
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore dependencies
+/node_modules
+/vendor
+
+# Ignore logs and temporary files
+/logs
+/tmp
+*.log
+
+# Ignore OS or editor-specific files
+.DS_Store
+.vscode/
+.idea/
+
+# Ignore environment-specific files
+.env
+.env.local
