@@ -28,6 +28,10 @@ The **Online Pharmacy Database System** project aims to develop the database sys
 - Infrastructure as Code: CloudFormation
 - Version Control: Git, GitHub
 
+## Links
+- Jira: https://bbd-boitumeloraletsemo.atlassian.net/jira/software/projects/KAN/boards/1
+- Confluence: 
+
 ## Setup Instructions
 
 1. Clone the repository
