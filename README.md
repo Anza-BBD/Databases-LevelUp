@@ -30,7 +30,7 @@ The **Online Pharmacy Database System** project aims to develop the database sys
 
 ## Links
 - Jira: https://bbd-boitumeloraletsemo.atlassian.net/jira/software/projects/KAN/boards/1
-- Confluence://bbd-boitumeloraletsemo.atlassian.net/l/cp/CM902fZx
+- Confluence: https://bbd-boitumeloraletsemo.atlassian.net/l/cp/CM902fZx
 
 ## Setup Instructions
 
