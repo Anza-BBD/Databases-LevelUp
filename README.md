@@ -35,7 +35,7 @@ The **Online Pharmacy Database System** project aims to develop the database sys
 ## Setup Instructions
 
 ### Prerequisites
-- Install PostgreSQL: https://www.postgresql.org/download/
+- Install PostgreSQL 16: https://www.postgresql.org/download/
 
 ### Running the database
 1. Clone the repository: git clone https://github.com/Anza-BBD/Databases-LevelUp.git
