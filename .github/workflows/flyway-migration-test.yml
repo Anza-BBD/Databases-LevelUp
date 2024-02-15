@@ -14,12 +14,12 @@ jobs:
     name: Test flyway migration scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout/@v3
+      - uses: actions/checkout/@v2
       - name: Test migrations on Flyway Hub
         uses: red-gate/flyway-hub-migration-test@v4
         with:
           projectName: databases-levelup
-          engine: postgres-16
+          engine: postgres-13
           migrationDirs: src/database/migrations 
           flywayConfPath: flyway.conf  
 env:
