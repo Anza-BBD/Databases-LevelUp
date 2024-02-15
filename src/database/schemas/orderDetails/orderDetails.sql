@@ -1,6 +1,6 @@
 --@block
 CREATE TABLE "OrderDetails" (
-  "OrderDetailID" bigint PRIMARY KEY NOT NULL,
+  "OrderDetailID" SERIAL PRIMARY KEY NOT NULL,
   "OrderID" bigint NOT NULL,
   "ProductID" bigint NOT NULL,
   "Quantity" int NOT NULL,
