@@ -3,7 +3,7 @@ INSERT INTO Doctors (Name) VALUES
 ('Dr. Johnson'),
 ('Dr. Lee'),
 ('Dr. Garcia'),
-('Dr. Patel');
+('Dr. Patel'),
 ('Dr. Anderson'),
 ('Dr. White'),
 ('Dr. Thompson'),
