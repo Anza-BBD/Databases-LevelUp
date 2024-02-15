@@ -22,9 +22,7 @@ jobs:
         run: sudo apt install snapd
       - name: Install Flyway 
         run: sudo snap install flyway
-      - name: Generate Flyway Configuration
-        run: echo "flyway.password=${{ secrets.DB_PASSWORD }}" >> flyway.conf
       - name: Run flyway
-        run: flyway migrate 
+        run: flyway migrate -password=${{ secrets.DB_PASSWORD }}
 env:
   FLYWAYHUB_ACCESS_TOKEN: ${{ secrets.FLYWAY_HUB_ACCESS_TOKEN }}
