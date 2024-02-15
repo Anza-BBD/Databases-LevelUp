@@ -1,17 +1,17 @@
-ALTER TABLE "Prescriptions" ADD FOREIGN KEY ("PrescriptionID") REFERENCES "Doctors" ("DoctorID");
+ALTER TABLE "Products" ADD CONSTRAINT FK_supplier FOREIGN KEY ("SupplierID") REFERENCES "Supplier" ("SupplierID");
 
-ALTER TABLE "Prescriptions" ADD FOREIGN KEY ("PrescriptionID") REFERENCES "Customers" ("CustomerID");
+ALTER TABLE "Prescriptions" ADD CONSTRAINT FK_doctor FOREIGN KEY ("DoctorID") REFERENCES "Doctors" ("DoctorID");
 
-ALTER TABLE "PrescriptionDetails" ADD FOREIGN KEY ("PrescriptionDetailID") REFERENCES "Prescriptions" ("PrescriptionID");
+ALTER TABLE "Prescriptions" ADD CONSTRAINT FK_customer FOREIGN KEY ("CustomerID") REFERENCES "Customers" ("CustomerID");
 
-ALTER TABLE "OrderDetails" ADD FOREIGN KEY ("OrderDetailID") REFERENCES "Orders" ("OrderID");
+ALTER TABLE "PrescriptionDetails" ADD CONSTRAINT FK_Prescription FOREIGN KEY ("PrescriptionID") REFERENCES "Prescriptions" ("PrescriptionID");
 
-ALTER TABLE "OrderDetails" ADD FOREIGN KEY ("OrderDetailID") REFERENCES "Products" ("ProductID");
+ALTER TABLE "PrescriptionDetails" ADD CONSTRAINT FK_Product FOREIGN KEY ("ProductID") REFERENCES "Products" ("ProductID");
 
-ALTER TABLE "Products" ADD FOREIGN KEY ("ProductID") REFERENCES "Supplier" ("SupplierID");
+ALTER TABLE "Orders" ADD CONSTRAINT FK_Customer FOREIGN KEY ("CustomerID") REFERENCES "Customers" ("CustomerID");
 
-ALTER TABLE "Customers" ADD FOREIGN KEY ("CustomerID") REFERENCES "Orders" ("OrderID");
+ALTER TABLE "OrderDetails" ADD CONSTRAINT FK_Order FOREIGN KEY ("OrderID") REFERENCES "Orders" ("OrderID");
 
-ALTER TABLE "PrescriptionDetails" ADD FOREIGN KEY ("PrescriptionDetailID") REFERENCES "Products" ("ProductID");
+ALTER TABLE "OrderDetails" ADD CONSTRAINT FK_Product FOREIGN KEY ("ProductID") REFERENCES "Products" ("ProductID");
 
-ALTER TABLE "Orders" ADD FOREIGN KEY ("OrderID") REFERENCES "Payments" ("PaymentID");
+ALTER TABLE "Payments" ADD CONSTRAINT FK_Order FOREIGN KEY ("OrderID") REFERENCES "Orders" ("OrderID");

@@ -1,9 +1,9 @@
-INSERT INTO Products (Name, Description, Price, ProductQuantity, SupplierID) VALUES
+INSERT INTO "Products" ("Name", "Description", "Price", "ProductQuantity", "SupplierID") VALUES
 ('Ibuprofen', 'Pain and fever reliever.', 100.99, 50, 1),
 ('Acetaminophen', 'Pain and fever reducer.', 250.50, 100, 2),
 ('Amoxicillin', 'Antibiotic for bacterial infections.', 50.75, 75, 3),
 ('Lisinopril', 'Blood thinner to prevent clots.', 150.75, 30, 4),
-('Atorvastatin', 'Blood pressure and heart medication.', 200.00, 60, 5);
+('Atorvastatin', 'Blood pressure and heart medication.', 200.00, 60, 5),
 ('Omeprazole', 'Cholesterol-lowering statin.', 80.99, 40, 6),
 ('Albuterol', 'Acid reflux and ulcer treatment.', 120.50, 60, 7),
 ('Metformin', 'Asthma and COPD inhaler', 70.25, 70, 8),
