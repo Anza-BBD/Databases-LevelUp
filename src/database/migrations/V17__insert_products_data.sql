@@ -1,4 +1,4 @@
-INSERT INTO Products (Name, Description, Price, ProductQuantity, SupplierID) VALUES
+INSERT INTO "Products" ("Name", "Description", "Price", "ProductQuantity", "SupplierID") VALUES
 ('Ibuprofen', 'Pain and fever reliever.', 100.99, 50, 1),
 ('Acetaminophen', 'Pain and fever reducer.', 250.50, 100, 2),
 ('Amoxicillin', 'Antibiotic for bacterial infections.', 50.75, 75, 3),

@@ -1,4 +1,4 @@
-INSERT INTO Doctors (Name) VALUES
+INSERT INTO "Doctors" ("Name") VALUES
 ('Dr. Smith'),
 ('Dr. Johnson'),
 ('Dr. Lee'),

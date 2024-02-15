@@ -1,4 +1,4 @@
-INSERT INTO Supplier (Name, Email, PhoneNumber) VALUES
+INSERT INTO "Supplier" ("Name", "Email", "PhoneNumber") VALUES
 ('Supplier X', 'supplier.x@example.com', '111-222-3333'),
 ('Supplier Y', 'supplier.y@example.com', '444-555-6666'),
 ('Supplier Z', 'supplier.z@example.com', '777-888-9999'),

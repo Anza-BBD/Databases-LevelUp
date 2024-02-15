@@ -1,4 +1,4 @@
-INSERT INTO Payments (OrderID, Amount, PaymentDate, PaymentMethod) VALUES
+INSERT INTO "Payments" ("OrderID", "Amount", "PaymentDate", "PaymentMethod") VALUES
 (1, 470.48, '2024-02-10', 'Credit Card'),
 (2, 630.23, '2024-02-11', 'PayPal'),
 (3, 120.25, '2024-02-12', 'Debit Card'),

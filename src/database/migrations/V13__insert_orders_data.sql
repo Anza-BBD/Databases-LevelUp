@@ -1,4 +1,4 @@
-INSERT INTO Orders (CustomerID, OrderDate, TotalAmount, Status) VALUES
+INSERT INTO "Orders" ("CustomerID", "OrderDate", "TotalAmount", "Status") VALUES
 (1, '2024-02-10', 470.48, 1),
 (2, '2024-02-11', 630.23, 1),
 (3, '2024-02-12', 1200.25, 1),
