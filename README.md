@@ -1,8 +1,8 @@
-# Online Pharmacy
+# MedClick Pharmacy
 
 ## Description
 
-The **Online Pharmacy Database System** project aims to develop the database system for an online pharmacy platform, meant for selling drugs. This database serves as the backbone for managing all aspects of the pharmacy's operations, including product management and order processing, as well as information about the customers and pharmacists.
+The **MedClick Pharmacy Database System** project aims to develop the database system for an online pharmacy platform, meant for selling drugs. This database serves as the backbone for managing all aspects of the pharmacy's operations, including product management and order processing, as well as information about the customers and pharmacists.
 
 ## Team Members
 
