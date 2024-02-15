@@ -1,4 +1,4 @@
-INSERT INTO Prescriptions (CustomerID, DoctorID, IssueDate, ExpiryDate) VALUES
+INSERT INTO "Prescriptions" ("CustomerID", "DoctorID", "IssueDate", "ExpiryDate") VALUES
 (1, 1, '2024-02-10', '2024-03-10'),
 (2, 2, '2024-02-11', '2024-03-11'),
 (3, 3, '2024-02-12', '2024-03-12'),

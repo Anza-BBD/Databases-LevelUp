@@ -1,14 +1,14 @@
 CREATE VIEW OrderDetailsView AS
 SELECT
-    o.OrderID,
-    o.CustomerID,
-    o.OrderDate,
-    p.Name AS ProductName,
-    od.Quantity,
-    od.Price
+    o."OrderID",
+    o."CustomerID",
+    o."OrderDate",
+    p."Name" AS ProductName,
+    od."Quantity",
+    od."Price"
 FROM
-    Orders o
+    "Orders" o
 JOIN
-    OrderDetails od ON o.OrderID = od.OrderID
+    "OrderDetails" od ON o."OrderID" = od."OrderID"
 JOIN
-    Products p ON od.ProductID = p.ProductID;
+    "Products" p ON od."ProductID" = p."ProductID";

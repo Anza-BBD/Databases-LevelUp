@@ -1,4 +1,4 @@
-INSERT INTO PrescriptionDetails (PrescriptionID, ProductID, Quantity) VALUES
+INSERT INTO "PrescriptionDetails" ("PrescriptionID", "ProductID", "Quantity") VALUES
 (1, 1, 2),
 (1, 2, 1),
 (2, 3, 3),

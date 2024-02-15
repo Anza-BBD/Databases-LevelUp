@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION GetOrderDetailsWithPayment(order_id bigint)
+CREATE OR REPLACE FUNCTION GetOrderDetailsWithPayment(order_id_param bigint)
 RETURNS TABLE (
     order_id bigint,
     customer_id bigint,
@@ -12,20 +12,20 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT
-        o.OrderID,
-        o.CustomerID,
-        o.OrderDate,
-        o.TotalAmount,
-        p.PaymentID,
-        p.Amount,
-        p.PaymentDate,
-        p.PaymentMethod
+        o."OrderID",
+        o."CustomerID",
+        o."OrderDate",
+        o."TotalAmount",
+        p."PaymentID",
+        p."Amount",
+        p."PaymentDate",
+        p."PaymentMethod"
     FROM
-        Orders o
+        "Orders" o
     LEFT JOIN
-        Payments p ON o.OrderID = p.OrderID
+        "Payments" p ON o."OrderID" = p."OrderID"
     WHERE
-        o.OrderID = order_id;
+        o."OrderID" = order_id;
 
     RETURN;
 END;
