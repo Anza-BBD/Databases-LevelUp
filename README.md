@@ -49,12 +49,37 @@ The **MedClick Pharmacy Database System** project aims to develop the database s
     ```bash
     cd Databases-LevelUp
     ```
-
-3. Run the postgres database:
-    ```bash
-    psql -h databaselevelup-postgres-instance-in-eu-west-1.cpnugokqk56v.eu-west-1.rds.amazonaws.com -U postgres -d Pharmacy
+3. Set up a role in your AWS account for this repo
     ```
-4. Have fun!
+    you can follow instructions here:
+    https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+    ```
+4. Set the following secrets and variables under the Actions section for the repo
+    ```
+    Secrets:
+        DB_PASSWORD: The password you want for the DB
+        FLYWAY_HUB_ACCESS_TOKEN: Access token for the flyway API
+    Variables:
+        AWS_REGION: Region to deploy to
+        CLOUDFORMATION_STACKNAME: Name of the stack
+        CREATED_USING: How aws resources will be created i.e cloudformation
+        DB_NAME: Database Name
+        DB_USER: Database Master User
+        OWNER: identify yourself e.g email address
+        ROLE_ARN: The AWS role ARN from previous step
+        ROLE_SESSION_NAME: Arbitrary name for the session
+    ```
+5. run the infrastructure deploy github action.
+
+6. Run the flyway migration git hub action. 
+
+7. Run the postgres database:
+    ```bash
+    psql -h <AWS DB endpoint> -U <DB_USER> -d <DB_NAME>
+    e.g
+    psql -h <databaselevelup-postgres-instance-in-eu-west-1.cpnugokqk56v.eu-west-1.rds.amazonaws.com> -U postgres -d Pharmacy
+    ```
+8. Have fun!
 
 ## Acknowledgements
 We would like to express our gratitude to the **ATC** team for giving us this amazing opportunity to work on this project together and grow as developers.
