@@ -38,10 +38,23 @@ The **MedClick Pharmacy Database System** project aims to develop the database s
 - Install PostgreSQL 16: https://www.postgresql.org/download/
 
 ### Running the database
-1. Clone the repository: git clone https://github.com/Anza-BBD/Databases-LevelUp.git
-2. Navigate into the project directory: cd Databases-LevelUp
-3. Run the postgres database: psql -h databaselevelup-postgres-instance-in-eu-west-1.cpnugokqk56v.eu-west-1.rds.amazonaws.com -U postgres -d Pharmacy
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/Anza-BBD/Databases-LevelUp.git
+    ```
+
+2. Navigate into the project directory: 
+
+    ```bash
+    cd Databases-LevelUp
+    ```
+
+3. Run the postgres database:
+    ```bash
+    psql -h databaselevelup-postgres-instance-in-eu-west-1.cpnugokqk56v.eu-west-1.rds.amazonaws.com -U postgres -d Pharmacy
+    ```
 4. Have fun!
 
 ## Acknowledgements
-We would like to express our gratitude to the ATC team for giving us this amazing opportunity to work on this project together and grow as developers.
+We would like to express our gratitude to the **ATC** team for giving us this amazing opportunity to work on this project together and grow as developers.
