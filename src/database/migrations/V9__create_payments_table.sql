@@ -1,6 +1,5 @@
---@block
 CREATE TABLE "Payments" (
-  "PaymentID" SERIAL PRIMARY KEY NOT NULL,
+  "PaymentID" bigint PRIMARY KEY NOT NULL,
   "OrderID" bigint NOT NULL,
   "Amount" decimal(8,2) NOT NULL,
   "PaymentDate" date NOT NULL,
