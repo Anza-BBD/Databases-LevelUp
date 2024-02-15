@@ -51,7 +51,7 @@ The **MedClick Pharmacy Database System** project aims to develop the database s
     ```
 3. Set up a role in your AWS account for this repo
     ```
-    you can follow instructions here:
+    You can follow instructions here:
     https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
     ```
 4. Set the following secrets and variables under the Actions section for the repo
@@ -62,18 +62,24 @@ The **MedClick Pharmacy Database System** project aims to develop the database s
     Variables:
         AWS_REGION: Region to deploy to
         CLOUDFORMATION_STACKNAME: Name of the stack
-        CREATED_USING: How aws resources will be created i.e cloudformation
+        CREATED_USING: How AWS resources will be created i.e cloudformation
         DB_NAME: Database Name
         DB_USER: Database Master User
-        OWNER: identify yourself e.g email address
+        OWNER: Identify yourself e.g email address
         ROLE_ARN: The AWS role ARN from previous step
         ROLE_SESSION_NAME: Arbitrary name for the session
     ```
-5. run the infrastructure deploy github action.
 
-6. Run the flyway migration git hub action. 
+    Also set the following environment variable on your local machine for the Flyway config file to use:
+    ```
+    PHARMACY_PASSWORD: The same password you set for DB_PASSWORD in Github's Secrets
+    ```
 
-7. Run the postgres database:
+5. Run the Infrastructure Deploy Github action.
+
+6. Run the Flyway Migration Github action. 
+
+7. Run the Postgres Database:
     ```bash
     psql -h <AWS DB endpoint> -U <DB_USER> -d <DB_NAME>
     e.g
