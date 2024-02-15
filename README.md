@@ -35,14 +35,13 @@ The **Online Pharmacy Database System** project aims to develop the database sys
 ## Setup Instructions
 
 ### Prerequisites
-- Install Flyway: https://www.red-gate.com/products/flyway/community/download/
 - Install PostgreSQL: https://www.postgresql.org/download/
 
 ### Running the database
 1. Clone the repository: git clone https://github.com/Anza-BBD/Databases-LevelUp.git
 2. Navigate into the project directory: cd Databases-LevelUp
-2. Run the Flyway migration scripts: flyway migrate
 3. Run the postgres database: psql -h databaselevelup-postgres-instance-in-eu-west-1.cpnugokqk56v.eu-west-1.rds.amazonaws.com -U postgres -d Pharmacy
+4. Have fun!
 
 ## Acknowledgements
 We would like to express our gratitude to the ATC team for giving us this amazing opportunity to work on this project together and grow as developers.
