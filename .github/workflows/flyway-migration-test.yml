@@ -21,6 +21,4 @@ jobs:
           projectName: databases-levelup
           engine: postgres-16
           migrationDirs: src/database/migrations 
-          flywayConfPath: flyway.conf  
-env:
-  FLYWAYHUB_ACCESS_TOKEN: ${{ secrets.FLYWAY_HUB_ACCESS_TOKEN }}
+          flywayConfPath: flyway.conf
