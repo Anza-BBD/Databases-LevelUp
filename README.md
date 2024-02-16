@@ -70,11 +70,6 @@ The **MedClick Pharmacy Database System** project aims to develop the database s
         ROLE_SESSION_NAME: Arbitrary name for the session
     ```
 
-    Also set the following environment variable on your local machine for the Flyway config file to use:
-    ```
-    PHARMACY_PASSWORD: The same password you set for DB_PASSWORD in Github's Secrets
-    ```
-
 5. Run the Infrastructure Deploy Github action.
 
 6. Run the Flyway Migration Github action. 
