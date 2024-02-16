@@ -24,5 +24,3 @@ jobs:
         run: sudo snap install flyway
       - name: Run flyway
         run: flyway migrate -password=${{ secrets.DB_PASSWORD }}
-# env:
-#   FLYWAYHUB_ACCESS_TOKEN: ${{ secrets.FLYWAY_HUB_ACCESS_TOKEN }}
